@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: efair
+
+    #console H2
+  h2:
+    console:
+      enabled: true
+      route: /h2-console
+
+    #Database
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+    #JPA
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

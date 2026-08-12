@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Panel</title>
+</head>
+<body>
+    <h1>CONTROL PANEL</h1>
+
+    <a th:href="@{/product/add}">ADD NEW ONE</a>
+
+    <div id="PRODUCT LIST">
+
+        <table id="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Unitary Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="prod : ${allProducts}">
+                <td th:text="${prod.id}"></td>
+                <td th:text="${prod.name}"></td>
+                <td th:text="${prod.descr}"></td>
+                <td th:text="${prod.unitPrice}"></td>
+
+                <td>
+                    <a class="btn-action btn-edit" >
+                        <i class="bi bi-pencil-fill"></i> Edit
+                    </a>
+
+                    <a class="btn-action btn-delete" >
+                        <i class="bi bi-trash-fill"></i> Delete
+                    </a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#table').DataTable({
+                });
+            });
+        </script>
+    </div>
+
+</body>
+</html>
