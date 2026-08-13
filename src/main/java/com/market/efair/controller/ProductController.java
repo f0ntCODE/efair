@@ -19,11 +19,11 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public String loadPage(Model model){
         model.addAttribute("allProducts", productService.getAllProducts());
 
-        return "/product/ControlPanel";
+        return "product/ControlPanel";
     }
 
     @PostMapping("/register")
@@ -37,14 +37,14 @@ public class ProductController {
             System.out.println("ERROR: " + ex.getMessage());
         }
 
-        return "redirect:/product/";
+        return "redirect:/product";
     }
 
     @GetMapping("/add")
     public String addNewProductPage(Model model){
         model.addAttribute("product", new Product());
 
-        return "/product/ProdForm";
+        return "product/ProdForm";
     }
 
     @PostMapping("/add")
@@ -57,7 +57,7 @@ public class ProductController {
             System.out.println("ERROR: " + ex.getMessage());
         }
 
-        return "redirect:/product/";
+        return "redirect:/product";
 
     }
 
