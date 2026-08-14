@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>E-FAIR | Main page</title>
+</head>
+<body>
+    <h1>E-FAIR</h1>
+
+    <div th:each="product : ${product}">
+        <div class="card-wraper">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img alt="Product image"/>
+                        <p th:text="${product.name}">Product name</p>
+                        <h2 th:text="${product.descr}">Product description</h2>
+                        <p th:text="${#numbers.formatDecimal(product.unitPrice, 1, 2, 'COMMA')}">Product price</p>
+                        <button>Add to cart</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

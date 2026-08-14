@@ -8,7 +8,7 @@ xmlns:th="http://www.thymeleaf.org"
 </head>
 <body>
 
-    <h1>REGISTER A NEW PRODUCT</h1>
+    <h1>ADD A NEW PRODUCT</h1>
     <div id="mainForm">
         <form th:action="@{/product/register}" th:object="${product}" method="post">
             <input type="text" th:field="*{name}" name="nameField" placeholder="Type product name">
@@ -17,6 +17,8 @@ xmlns:th="http://www.thymeleaf.org"
             <input type="submit" value="Confirm">
         </form>
     </div>
+
+    <a th:href="@{/product}">RETURN</a>
 
 </body>
 </html>

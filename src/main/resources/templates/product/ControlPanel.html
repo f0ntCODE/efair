@@ -30,11 +30,11 @@
                 <td th:text="${prod.unitPrice}"></td>
 
                 <td>
-                    <a class="btn-action btn-edit" >
+                    <a class="btn-action btn-edit" th:href="@{/product/edit/{id}(id=${prod.id})}">
                         <i class="bi bi-pencil-fill"></i> Edit
                     </a>
 
-                    <a class="btn-action btn-delete" >
+                    <a class="btn-action btn-delete" th:href="@{/product/delete/{id}(id=${prod.id})}">
                         <i class="bi bi-trash-fill"></i> Delete
                     </a>
                 </td>

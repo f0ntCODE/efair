@@ -1,13 +1,13 @@
 package com.market.efair.controller;
 
 import com.market.efair.entity.Product;
+import com.market.efair.exception.AlreadyExistException;
 import com.market.efair.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.nio.file.Path;
 
 @Controller
 @RequestMapping("/product")
@@ -44,7 +44,7 @@ public class ProductController {
     public String addNewProductPage(Model model){
         model.addAttribute("product", new Product());
 
-        return "product/ProdForm";
+        return "product/AddProdForm";
     }
 
     @PostMapping("/add")
@@ -53,9 +53,50 @@ public class ProductController {
         try {
 
             productService.registerNewProduct(product);
+
         }catch (Exception ex){
+
             System.out.println("ERROR: " + ex.getMessage());
+
         }
+
+        return "redirect:/product";
+
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editProductPage(@PathVariable long id,
+                                  Model model){
+
+        Product foundProduct = productService.getProduct(id);
+
+        System.out.println("Selected prod: " + foundProduct.getName());
+        model.addAttribute("product", foundProduct);
+
+        return "product/EditProdForm";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editProduct(@ModelAttribute Product newProductInfo,
+                              @PathVariable long id){
+
+        try {
+
+            productService.editProduct(id, newProductInfo);
+
+        }catch (AlreadyExistException ex){
+
+            System.out.println("ERROR: " + ex.getMessage());
+
+        }
+
+        return "redirect:/product";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable long id){
+
+        productService.deleteProduct(id);
 
         return "redirect:/product";
 

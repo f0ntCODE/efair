@@ -57,6 +57,16 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
+    public Product editInfo(Product newInfo){
+
+         this.name = newInfo.getName();
+         this.unitPrice = newInfo.getUnitPrice();
+         this.descr = newInfo.getDescr();
+         this.imagePath = newInfo.getImagePath();
+
+        return this;
+    }
+
     public String getImagePath() {
         return imagePath;
     }

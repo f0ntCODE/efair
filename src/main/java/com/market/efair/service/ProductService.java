@@ -1,6 +1,8 @@
 package com.market.efair.service;
 
 import com.market.efair.entity.Product;
+import com.market.efair.exception.AlreadyExistException;
+import com.market.efair.exception.NotFoundException;
 import com.market.efair.repository.ProductRepo;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class ProductService {
         this.productRepo = productRepo;
     }
 
-    public Product registerNewProduct(Product product) throws Exception {
+    public void registerNewProduct(Product product) throws Exception {
 
         if(isProductAlreadyExist(product.getName())){
 
@@ -30,8 +32,25 @@ public class ProductService {
                 product.getUnitPrice()
         );
 
-        return productRepo.save(newProduct);
+        productRepo.save(newProduct);
 
+    }
+
+    public void editProduct(long id, Product newProductInfo){
+
+        Product foundProduct = productRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Product not found"));
+
+        if(isProductAlreadyExist(newProductInfo.getName())) throw new AlreadyExistException("This product already exist");
+
+
+        productRepo.save(foundProduct.editInfo(newProductInfo));
+
+    }
+
+    public void deleteProduct(long id) {
+
+        productRepo.deleteById(id);
     }
 
     private boolean isProductAlreadyExist(String name){
@@ -44,4 +63,9 @@ public class ProductService {
         return List.copyOf(productRepo.findAll());
     }
 
+    public Product getProduct(long id){
+
+        return productRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Product not found"));
+    }
 }
