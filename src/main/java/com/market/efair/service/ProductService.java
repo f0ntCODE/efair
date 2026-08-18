@@ -4,6 +4,7 @@ import com.market.efair.entity.Product;
 import com.market.efair.exception.AlreadyExistException;
 import com.market.efair.exception.NotFoundException;
 import com.market.efair.repository.ProductRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ProductService {
         this.productRepo = productRepo;
     }
 
+    @Transactional
     public void registerNewProduct(Product product) throws Exception {
 
         if(isProductAlreadyExist(product.getName())){
@@ -36,6 +38,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public void editProduct(long id, Product newProductInfo){
 
         Product foundProduct = productRepo.findById(id)
@@ -48,6 +51,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public void deleteProduct(long id) {
 
         productRepo.deleteById(id);

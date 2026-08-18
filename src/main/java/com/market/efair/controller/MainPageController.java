@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class MainPageControler {
+public class MainPageController {
 
     private final ProductService productService;
 
-    public MainPageControler(ProductService productService){
+    public MainPageController(ProductService productService){
         this.productService = productService;
     }
 
