@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+xmlns:th="http://www.thymeleaf.org"
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN ON EFAIR</title>
+</head>
+<body>
+
+    <h1>WELCOME BACK!</h1>
+
+    <div class="form">
+        <form th:object="${loginData}" th:action="@{/client/login}" method="POST">
+            <input type="text" name="emailField" th:field="*{email}" placeholder="Type your email" required>
+            <input type="text" name="passField" th:field="*{password}" placeholder="Type your password" required>
+            <input type="submit" value="Login">
+        </form>
+
+    </div>
+
+</body>
+</html>

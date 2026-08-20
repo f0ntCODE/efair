@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGN IN ON EFAIR</title>
+</head>
+<body>
+    <h1>JOIN ON EFAIR! PURCHASE FRESH AND ORGANIC GROCERIES!</h1>
+
+    <div class="form">
+        <form th:object="${clientData}" th:action="@{/client/register}" method="POST">
+            <input type="text" placeholder="Type your name" th:field="*{name}" name="nameField">
+            <input type="text" placeholder="Type your email" th:field="*{email}" name="emailField">
+            <input type="password" placeholder="Create a strong password" th:field="*{password}" name="passField">
+            <input type="text" placeholder="Type your CPF" th:field="*{CPF}" name="CpfField">
+            <input type="text" placeholder="Type your address" th:field="*{address}" name="addrField">
+            <input type="date" placeholder="Type your birthDate" th:field="*{birthDate}" name="birthField">
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</body>
+</html>
