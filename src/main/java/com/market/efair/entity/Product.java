@@ -1,8 +1,13 @@
 package com.market.efair.entity;
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "product")
@@ -13,14 +18,14 @@ public class Product {
     private Long id;
     private String name;
     private String descr;
-    private double unitPrice;
+    private BigDecimal unitPrice;
     private String imagePath;
 
     public Product() {}
 
     public Product(String name,
                    String descr,
-                   double unitPrice) {
+                   BigDecimal unitPrice) {
 
         this.name = name;
         this.descr = descr;
@@ -47,11 +52,11 @@ public class Product {
         this.descr = descr;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 

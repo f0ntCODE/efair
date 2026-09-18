@@ -20,7 +20,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void registerNewProduct(Product product) throws Exception {
+    public Product registerNewProduct(Product product) throws Exception {
 
         if(isProductAlreadyExist(product.getName())){
 
@@ -34,7 +34,8 @@ public class ProductService {
                 product.getUnitPrice()
         );
 
-        productRepo.save(newProduct);
+        return productRepo.save(newProduct);
+
 
     }
 
